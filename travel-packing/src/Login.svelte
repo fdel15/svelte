@@ -1,0 +1,53 @@
+<script>
+  let username = '';
+  let password = '';
+
+  const login = () => alert('You pressed login!')
+  const signup = () => alert('You pressed sign up!')
+
+</script>
+
+<section>
+  <form on:submit|preventDefault={login}>
+    <label>
+      UserName
+      <input type='text' placeholder='Username' bind:value={username} >
+    </label>
+    
+    <label>
+      Password
+      <input type='password' placeholder='Password' bind:value={password} >
+    </label>
+
+    <div class='buttons'>
+      <button>Login</button>
+      <button type='button' on:click={signup}>Sign Up</button>
+    </div>
+  </form>
+</section>
+
+<style>
+  .buttons {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.5rem;
+    margin-top: 1rem;
+  }
+
+  form {
+    display: inline-block;
+  }
+  
+  input {
+    display: block;
+    margin-top: 0.3rem;
+  }
+
+  label {
+    color: white;
+    display: block;
+    font-size: 1.5rem;
+    margin-top: 0.5rem;
+  }
+</style>
+
