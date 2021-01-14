@@ -2,6 +2,7 @@
   import Category from './Category.svelte';
   import {getGuid, sortOnName} from './util';
   import {createEventDispatcher} from 'svelte';
+  import Dialog from './Dialog.svelte';
 
   const dispatch = createEventDispatcher();
 
@@ -10,6 +11,7 @@
   let categoryName;
   let message = '';
   let show = 'all';
+  let dialog = null;
 
   $: categoryArray = sortOnName(Object.values(categories));
 
@@ -20,7 +22,7 @@
 
     if (duplicate) {
       message = `The cateogry "$(categoryName)" already exists`;
-      alert(message);
+      dialog.showModal();
       return;
     }
 
@@ -41,6 +43,12 @@
   }
 
   function deleteCategory(category) {
+    if (Object.values(category.items).length) {
+      message = 'This category is not empty.';
+      dialog.showModal();
+      return;
+    }
+
     delete categories[category.id]
     categories = categories // triggers update
   }
@@ -57,6 +65,25 @@
     const text = localStorage.getItem('travel-packing');
     if (text && text !== '{}') {
       categories = JSON.parse(text);
+    }
+  }
+
+  let dragAndDrop = {
+    drag(event, categoryId, itemId) {
+      const data = {categoryId, itemId};
+      event.dataTransfer.setData('text/plain', JSON.stringify(data));
+    },
+
+    drop(event, categoryId) {
+      const json = event.dataTransfer.getData('text/plain');
+      const data = JSON.parse(json);
+      const category = categories[data.categoryId];
+      const item = category.items[data.itemId];
+
+      delete category.items[data.itemId];
+
+      categories[categoryId].items[data.itemId] = item; // Adds item to another category
+      categories = categories // triggers update
     }
   }
 </script>
@@ -80,7 +107,7 @@
     </p>
 
     <div class='radios'>
-      <label>Show</label>
+      <h3>Show</h3>
       <label>
         <input name='show' type='radio' value='all' bind:group={show}>
         All
@@ -106,12 +133,17 @@
         bind:category
         {categories}
         {show}
+        {dragAndDrop}
         on:delete={() => deleteCategory(category)}
         on:persist={persist}
       />
     {/each}
   </div>
 </section>
+
+<Dialog title="Category" bind:dialog>
+  <div>{message}</div>
+</Dialog>
 
 <style>
   .categories {

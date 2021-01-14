@@ -5,11 +5,16 @@
   const dispatch = createEventDispatcher();
 
   export let item;
+  export let categoryId;
+  export let dragAndDrop;
 
   let editing = false;
 </script>
 
-<li>
+<li
+  draggable="true"
+  on:dragstart={event => dragAndDrop.drag(event, categoryId, item.id)}
+ >
   <input type='checkbox' bind:checked={item.packed}>
   {#if editing }
     <input 

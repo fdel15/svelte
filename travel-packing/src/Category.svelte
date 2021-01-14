@@ -1,18 +1,23 @@
 <script>
   import Item from './Item.svelte'
-  import {getGuid, blurOnKey, sortOnName} from './util'
+  import {getGuid, blurOnKey, sortOnName} from './util';
   import {createEventDispatcher} from 'svelte';
+  import Dialog from './Dialog.svelte';
+
+  let dialog = null;
 
   const dispatch = createEventDispatcher();
 
   export let categories;
   export let category;
   export let show;
-
+  export let dragAndDrop;
+ 
   let editing = false;
   let itemName = '';
   let items = [];
   let message = '';
+  let hovering = false;
 
   $: items = Object.values(category.items)
   $: remaining = items.filter(item => !item.packed).length;
@@ -29,7 +34,7 @@
 
     if (duplicate) {
       message = `The item "${itemName}" already exists`
-      alert(message);
+      dialog.showModal();
       return;
     }
 
@@ -56,7 +61,22 @@
   }
 </script>
 
-<section>
+<section
+  class:hover={hovering}
+  on:dragenter={() => (hovering = true)}
+
+  on:dragleave={event => {
+    const {localName} = event.target;
+    if (localName === 'section') hovering = false;
+  }}
+
+  on:drop|preventDefault={event => {
+    dragAndDrop.drop(event, category.id);
+    hovering = false;
+  }}
+  
+  on:dragover|preventDefault
+>
   <h3>
     {#if editing}
       <input 
@@ -85,12 +105,22 @@
 
   <ul>
     {#each itemsToShow as item (item.id)}
-  <Item bind:item on:delete={() => deleteItem(item)}/>  <!-- This bind causes the category object to update when the item packed value is toggled-->
+  
+  <!-- This bind causes the category object to update when the item packed value is toggled-->
+  <Item 
+    bind:item on:delete={() => deleteItem(item)}
+    categoryId={category.id}
+    {dragAndDrop}
+  />
     {:else}
       <div>This category does not contain any items yet.</div>
     {/each}
   </ul>
 </section>
+
+<Dialog title="Category" bind:dialog>
+  <div>{message}</div>
+</Dialog>
 
 <style>
   button, input {
@@ -131,5 +161,9 @@
     list-style: none;
     margin: 0;
     padding-left: 0;
+  }
+
+  .hover {
+    border-color: orange;
   }
 </style>
