@@ -3,8 +3,10 @@
   import {getGuid, sortOnName} from './util';
   import {createEventDispatcher} from 'svelte';
   import Dialog from './Dialog.svelte';
+  import {flip} from 'svelte/animate';
 
   const dispatch = createEventDispatcher();
+  const options = {duration: 700};
 
   let categoryArray = [];
   let categories = {};
@@ -92,7 +94,6 @@
   <header>
     <form on:submit|preventDefault={addCategory}>
       <label>
-        New Category
         <input bind:value={categoryName}>
       </label>
 
@@ -129,14 +130,16 @@
 
   <div class="categories">
     {#each categoryArray as category (category.id)}
-      <Category 
-        bind:category
-        {categories}
-        {show}
-        {dragAndDrop}
-        on:delete={() => deleteCategory(category)}
-        on:persist={persist}
-      />
+      <div class='wrapper' animate:flip={options} >
+        <Category 
+          bind:category
+          {categories}
+          {show}
+          {dragAndDrop}
+          on:delete={() => deleteCategory(category)}
+          on:persist={persist}
+        />
+      </div>
     {/each}
   </div>
 </section>
@@ -191,5 +194,11 @@
     align-items: center;
     font-size: 24px;
     margin-top: 1em;
+  }
+
+
+
+  .wrapper {
+    display: 'inline-block';
   }
 </style>

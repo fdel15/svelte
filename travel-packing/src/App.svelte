@@ -2,8 +2,15 @@
 	import Login from './Login.svelte';
 	import Checklist from './Checklist.svelte';
 	import NotFound from './NotFound.svelte'
+	import {onMount} from 'svelte'
+
+	onMount(() => {
+		if(location.href.match('#checklist')) { location.href = '/#login' }
+		console.log(location.href)
+	})
 
 	let component = Login;
+
 
 	const hashMap = {
 		'#login': Login,
@@ -17,7 +24,7 @@
 
 <main>
 	<h1 class="hero">Travel Packing Checklist</h1>
-	<svelte:component bind:component
+	<svelte:component
 		this={component}
 		on:login={() => (location.href = '/#checklist')}
 		on:logout={() => (location.href = '/#login')}

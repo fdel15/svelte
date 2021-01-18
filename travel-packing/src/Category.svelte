@@ -3,10 +3,14 @@
   import {getGuid, blurOnKey, sortOnName} from './util';
   import {createEventDispatcher} from 'svelte';
   import Dialog from './Dialog.svelte';
+  import {flip} from 'svelte/animate';
+  import {linear} from 'svelte/easing';
+  import {scale} from 'svelte/transition';
 
   let dialog = null;
 
   const dispatch = createEventDispatcher();
+  const options = {duration: 700, easing: linear, times: 2};
 
   export let categories;
   export let category;
@@ -59,6 +63,20 @@
     category = category // triggers update
     dispatch('persist')
   }
+
+  function spin(node, options) {
+    const {easing, times = 1} = options;
+    return {
+    ...options,
+    css(t) {
+      const eased = easing(t);
+      const degrees = 360 * times;
+      return 'transform-origin: 50% 50%; ' +
+      `transform: scale(${eased}) ` +
+      `rotate(${eased * degrees}deg);`;
+    }
+  };
+}
 </script>
 
 <section
@@ -76,6 +94,8 @@
   }}
   
   on:dragover|preventDefault
+  in:scale={options}
+  out:spin={options}
 >
   <h3>
     {#if editing}
@@ -106,12 +126,14 @@
   <ul>
     {#each itemsToShow as item (item.id)}
   
-  <!-- This bind causes the category object to update when the item packed value is toggled-->
-  <Item 
-    bind:item on:delete={() => deleteItem(item)}
-    categoryId={category.id}
-    {dragAndDrop}
-  />
+    <div animate:flip>
+      <!-- This bind causes the category object to update when the item packed value is toggled-->
+      <Item 
+        bind:item on:delete={() => deleteItem(item)}
+        categoryId={category.id}
+        {dragAndDrop}
+      />
+    </div>
     {:else}
       <div>This category does not contain any items yet.</div>
     {/each}
