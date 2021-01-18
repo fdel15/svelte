@@ -17,7 +17,7 @@
 
 <main>
 	<h1 class="hero">Travel Packing Checklist</h1>
-	<svelte:component
+	<svelte:component bind:component
 		this={component}
 		on:login={() => (location.href = '/#checklist')}
 		on:logout={() => (location.href = '/#login')}
