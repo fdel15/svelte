@@ -1,5 +1,5 @@
 import { cleanup, render } from '@testing-library/svelte';
-import Todo from './Todo.svelte';
+import Todo from './components/Todo.svelte';
 
 describe('Todo', () => {
     const text = 'buy milk';
