@@ -1,11 +1,15 @@
 <script>
   import Todo from './Todo.svelte';
   
-  let todos = [];
+  const createTodo = (text, done = false) => ({ id: ++lastId, text, done});
+
   let item;
   let lastId = 0;
+  let todos = [
+    createTodo('learn Svelte', true),
+    createTodo('build a Svelte app')
+  ];
 
-  const createTodo = (text, done = false) => ({ id: ++lastId, text, done}); 
 
   function handleKeyPress(e) {
     if(e.keyCode === 13) {
@@ -46,7 +50,12 @@
   <button on:click={archiveCompleted}>Archive Completed</button>
 </div>
 
-<input placeholder='Add new item' bind:value={item} on:keypress={handleKeyPress} >
+<input
+  data-testid="todo-input"
+  placeholder='Add new item'
+  bind:value={item}
+  on:keypress={handleKeyPress} 
+>
 <button on:click={addTodo}>Add</button>
 
 <ul>
