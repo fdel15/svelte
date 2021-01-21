@@ -7,8 +7,6 @@
   import {linear} from 'svelte/easing';
   import {scale} from 'svelte/transition';
 
-  let dialog = null;
-
   const dispatch = createEventDispatcher();
   const options = {duration: 700, easing: linear, times: 2};
 
@@ -17,6 +15,7 @@
   export let show;
   export let dragAndDrop;
  
+  let dialog = null;
   let editing = false;
   let itemName = '';
   let items = [];
@@ -117,10 +116,10 @@
   <form on:submit|preventDefault={addItem}>
     <label>
       New Item
-      <input bind:value={itemName}>
+      <input data-testid="item-input" required bind:value={itemName}>
     </label>
 
-    <button disabled={!itemName}>Add Item</button>
+    <button>Add Item</button>
   </form>
 
   <ul>

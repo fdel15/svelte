@@ -1,0 +1,340 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Category should match snapshot 1`] = `
+Object {
+  "component": Category {
+    "$$": Object {
+      "after_update": Array [],
+      "before_update": Array [],
+      "bound": Object {},
+      "callbacks": Object {},
+      "context": Map {},
+      "ctx": Array [
+        Object {
+          "id": 1,
+          "items": Object {
+            "1": Object {
+              "id": 1,
+              "name": "socks",
+              "packed": true,
+            },
+            "2": Object {
+              "id": 2,
+              "name": "shoes",
+              "packed": false,
+            },
+          },
+          "name": "Stuff",
+        },
+        Object {},
+        <dialog
+          class="dialog svelte-z0mxa4"
+        >
+          <header
+            class="svelte-z0mxa4"
+          >
+             
+            <div
+              class="title svelte-z0mxa4"
+            >
+              Category
+            </div>
+             
+            <button
+              class="close-btn svelte-z0mxa4"
+            >
+              ✖
+            </button>
+          </header>
+           
+          <main
+            class="svelte-z0mxa4"
+          >
+            <div>
+              
+            </div>
+          </main>
+        </dialog>,
+        false,
+        "",
+        "",
+        false,
+        "1 of 2 remaining",
+        Array [
+          Object {
+            "id": 2,
+            "name": "shoes",
+            "packed": false,
+          },
+          Object {
+            "id": 1,
+            "name": "socks",
+            "packed": true,
+          },
+        ],
+        [Function],
+        Object {
+          "duration": 700,
+          "easing": [Function],
+          "times": 2,
+        },
+        [Function],
+        [Function],
+        Array [
+          Object {
+            "id": 1,
+            "items": Object {
+              "1": Object {
+                "id": 1,
+                "name": "socks",
+                "packed": true,
+              },
+              "2": Object {
+                "id": 2,
+                "name": "shoes",
+                "packed": false,
+              },
+            },
+            "name": "Stuff",
+          },
+        ],
+        "all",
+        Array [
+          Object {
+            "id": 1,
+            "name": "socks",
+            "packed": true,
+          },
+          Object {
+            "id": 2,
+            "name": "shoes",
+            "packed": false,
+          },
+        ],
+        1,
+        2,
+        [Function],
+        [Function],
+        [Function],
+        [Function],
+        [Function],
+        [Function],
+        [Function],
+        [Function],
+        [Function],
+        [Function],
+        [Function],
+        [Function],
+      ],
+      "dirty": Array [
+        -1,
+      ],
+      "fragment": Object {
+        "c": [Function],
+        "d": [Function],
+        "i": [Function],
+        "l": [Function],
+        "m": [Function],
+        "o": [Function],
+        "p": [Function],
+      },
+      "not_equal": [Function],
+      "on_destroy": Array [
+        [Function],
+      ],
+      "on_mount": Array [],
+      "props": Object {
+        "categories": 13,
+        "category": 0,
+        "dragAndDrop": 1,
+        "show": 14,
+      },
+      "skip_bound": false,
+      "update": [Function],
+    },
+    "$$set": [Function],
+    "$capture_state": [Function],
+    "$inject_state": [Function],
+  },
+  "container": <body>
+    <div>
+      <section
+        class="svelte-1rk183a"
+      >
+        <h3
+          class="svelte-1rk183a"
+        >
+          <span>
+            Stuff
+          </span>
+           
+          <span
+            class="status svelte-1rk183a"
+          >
+            1 of 2 remaining
+          </span>
+           
+          <button
+            class="icon svelte-1rk183a"
+          >
+            🗑
+          </button>
+        </h3>
+         
+        <form>
+          <label>
+            New Item
+      
+            <input
+              class="svelte-1rk183a"
+              data-testid="item-input"
+              required=""
+            />
+          </label>
+           
+          <button
+            class="svelte-1rk183a"
+          >
+            Add Item
+          </button>
+        </form>
+         
+        <ul
+          class="svelte-1rk183a"
+        >
+          <div>
+            <li
+              class="svelte-1fnd29c"
+              draggable="true"
+            >
+              <input
+                class="svelte-1fnd29c"
+                type="checkbox"
+              />
+               
+              <span
+                class="packed-false svelte-1fnd29c"
+              >
+                shoes
+              </span>
+               
+              <button
+                class="icon svelte-1fnd29c"
+                data-testid="delete"
+              >
+                🗑
+              </button>
+            </li>
+             
+          </div>
+          <div>
+            <li
+              class="svelte-1fnd29c"
+              draggable="true"
+            >
+              <input
+                class="svelte-1fnd29c"
+                type="checkbox"
+              />
+               
+              <span
+                class="packed-true svelte-1fnd29c"
+              >
+                socks
+              </span>
+               
+              <button
+                class="icon svelte-1fnd29c"
+                data-testid="delete"
+              >
+                🗑
+              </button>
+            </li>
+             
+          </div>
+        </ul>
+      </section>
+       
+      <dialog
+        class="dialog svelte-z0mxa4"
+      >
+        <header
+          class="svelte-z0mxa4"
+        >
+           
+          <div
+            class="title svelte-z0mxa4"
+          >
+            Category
+          </div>
+           
+          <button
+            class="close-btn svelte-z0mxa4"
+          >
+            ✖
+          </button>
+        </header>
+         
+        <main
+          class="svelte-z0mxa4"
+        >
+          <div>
+            
+          </div>
+        </main>
+      </dialog>
+    </div>
+  </body>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;

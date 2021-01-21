@@ -16,7 +16,7 @@
   on:dragstart={event => dragAndDrop.drag(event, categoryId, item.id)}
  >
   <input type='checkbox' bind:checked={item.packed}>
-  {#if editing }
+  {#if editing}
     <input 
       autofocus 
       bind:value={item.name} 
@@ -24,12 +24,18 @@
       on:keydown={blurOnKey}
       type='text'
     >
-  {:else }
+  {:else}
     <span class="packed-{item.packed}" on:click={() => (editing = true)}>
       {item.name}
     </span>
   {/if}
-  <button class='icon' on:click={() => dispatch('delete')}>&#x1F5D1</button>
+  <button
+    class='icon'
+    on:click={() => dispatch('delete')}
+    data-testid='delete'
+  >
+    &#x1F5D1
+  </button>
 </li>
 
 <style>
