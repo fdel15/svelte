@@ -6,7 +6,9 @@
         "dev": "rollup -c -w",
         "start": "sirv public",
         "test": "jest tests",
-        "test:watch": "npm run test -- --watch"
+        "test:watch": "npm run test -- --watch",
+        "cy:open": "cypress open",
+        "cy:run": "cypress run"
     },
     "devDependencies": {
         "@babel/core": "^7.12.10",
@@ -15,6 +17,7 @@
         "@rollup/plugin-node-resolve": "^10.0.0",
         "@testing-library/svelte": "^3.0.3",
         "babel-jest": "^26.6.3",
+        "cypress": "^6.3.0",
         "jest": "^26.6.3",
         "rollup": "^2.3.4",
         "rollup-plugin-css-only": "^3.1.0",

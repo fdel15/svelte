@@ -94,7 +94,7 @@
   <header>
     <form on:submit|preventDefault={addCategory}>
       <label>
-        <input bind:value={categoryName}>
+        <input data-testid='category-name-input' required bind:value={categoryName}>
       </label>
 
       <button type="submit" disabled={!categoryName}>Add Category</button>

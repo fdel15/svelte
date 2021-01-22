@@ -14,7 +14,7 @@
 <section>
   <form on:submit|preventDefault={login}>
     <label>
-      UserName
+      Username
       <input type='text' placeholder='Username' bind:value={username} >
     </label>
     
