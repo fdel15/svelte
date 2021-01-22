@@ -56,7 +56,7 @@
   bind:value={item}
   on:keypress={handleKeyPress} 
 >
-<button on:click={addTodo}>Add</button>
+<button disabled={!item} on:click={addTodo}>Add</button>
 
 <ul>
   {#each todos as todo}
@@ -65,6 +65,7 @@
       on:delete={ () => deleteTodo(todo.id) }
       on:toggleDone={ () => toggleDone(todo) } 
     />
+    {console.log('TodoList.svelte toggleDone: todo =', todo)}
   {/each}
 </ul>
 

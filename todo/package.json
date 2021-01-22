@@ -6,11 +6,14 @@
         "dev": "rollup -c -w",
         "start": "sirv public",
         "test": "jest src",
-        "test:watch": "npm run test -- --watch"
+        "test:watch": "npm run test -- --watch",
+        "cy:open": "cypress open",
+        "cy:run": "cypress run"
     },
     "devDependencies": {
         "@rollup/plugin-commonjs": "^16.0.0",
         "@rollup/plugin-node-resolve": "^10.0.0",
+        "cypress": "^6.3.0",
         "rollup": "^2.3.4",
         "rollup-plugin-css-only": "^3.1.0",
         "rollup-plugin-livereload": "^2.0.0",
