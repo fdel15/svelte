@@ -1,0 +1,78 @@
+Ch. 12 Testing
+
+Jest
+
+- Unit testing
+- By default tests are run in jsdom which supports headless execution of DOM-based tests
+  - enables you to run tests from the command line in CI
+- can watch source and test files and automatically rerun these tests when there are changes
+- snapshot tests - assert some output should be the same as it was the last time the test was run
+  - make implementing many tests simpler
+  - require extra dilligence in examining failures
+
+- Jest test suites are defined by functions that are passed to the describe function
+  - functions do the following:
+    - declare constants and variables used by all tests in the suite
+    - specify functions to be called
+      - beforeAll
+      - afterAll
+      - beforeEach
+      - afterEach
+    - call the test function once for each test in the suite, passing it a function that contains code for the test
+      - "it" is an alias for test
+      - test function can:
+        - Render Svelte component, optionally providing prop values
+        - Find DOM nodes in the rendered output
+        - simulate user interactions by firing events that can trigger DOM updates
+        - Make assertions about what could be found in the DOM using the "expect" function
+           - documentation for matchers https://jestjs.io/docs/en/using-matchers
+
+ - Svelte only bundles code that is used, so test code will not be included
+ - the Svelte Testing Library can be used with Jest to make testing easier
+   - render
+     - takes svelte component and object containing props
+     - returns an object with a container property as top most DOM element
+       - tests find DOM nodes inside container using DOM methods (querySelector, querySelectorAll)
+   - fireEvent
+     - can trigger a component to update the DOM
+     - calls to "expect" that follow can verify that the DOM was updated
+
+  - Installing JEST requires to install the following from NPM:
+    - npm install -D {name}
+      - @babel/core
+      - @babel/preset-env
+      - @testing-library/svelte
+      - babel-jest
+      - jest
+      - svelte-jester
+
+
+  “snapshot” test - first time
+snapshot tests are run, a __snapshots__ directory is created, and files containing rendered output are saved in this directory. In subsequent runs the rendered output is
+compared to these files. Any differences are reported as failed tests
+
+npm test -- --updateSnapshot will update all snapshots
+npx jest -i {file} will run a specific test file
+
+You can connect a debugger to your JEST code by running the following command and then going to chrome://inspect:
+node --inspect-brk node_modules/.bin/jest --runInBand
+
+Cypress
+
+End to End test running tool. Steps through your app in a browser to simulate user experience. Lots of functionality that will take some time to learn but valuable tool in testing applications
+
+Accessibliity Testing
+
+Skipping through this section. Many tools are discussed. Will need to reference when builidng real world application.
+
+Storybook
+  - an open source tool for developing UI components in isolation
+  - Detailed instructions for using Storybook with Svelte components can be found in
+the Storybook documentation at https://storybook.js.org/docs/guides/guide-svelte/
+  - npx -p @storybook/cli sb init --type svelte
+    - installs development dependencies
+    - adds npm scripts
+    - creates .storybook directory
+    - creates stories directory
+    - npm run storybook to run locally
+
