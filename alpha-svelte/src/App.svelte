@@ -1,16 +1,23 @@
 <script>
+	import { ticker } from './stores.js'
 	import SearchBox from './SearchBox.svelte'
-	let ticker = '';
+	import StockDetails from './StockDetails.svelte'
+	
 </script>
+
 <style>
 	h1 { text-align: center; }
+	main { margin: 1% 10%; }
 </style>
+
 <h1>
 	AlphaSvelte
 </h1>
 
-<SearchBox />
+<main>
+	<SearchBox />
 
-<h1>
-	{ticker}
-</h1>
+	{#if $ticker}
+		<StockDetails />
+	{/if}
+</main>
